@@ -34,7 +34,7 @@
           ],
           "boot_wait": "10s",
           "disk_size": 20480,
-          "guest_os_type": "centos",
+          "guest_os_type": "opensuse",
           "http_directory": "http",
           "output_directory": "images/openSUSE-{{user `os`}}-paralles-{{user `arch`}}-{{user `version`}}",
           "parallels_tools_flavor": "lin",
