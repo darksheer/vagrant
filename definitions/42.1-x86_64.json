@@ -15,6 +15,52 @@
   },
   "builders": [
     {
+          "name": "parallels",
+          "type": "parallels-iso",
+          "iso_url": "{{user `iso_url`}}",
+          "iso_checksum": "{{user `iso_checksum`}}",
+          "iso_checksum_type": "{{user `iso_checksum_type`}}",
+          "boot_command": [
+            "<esc><enter><wait>",
+            "linux ",
+            "biosdevname=0 ",
+            "net.ifnames=0 ",
+            "netdevice=eth0 ",
+            "netsetup=dhcp ",
+            "lang=en_US.utf8 ",
+            "textmode=1 ",
+            "autoyast=http://{{.HTTPIP}}:{{.HTTPPort}}/42.1-general.xml ",
+            "<enter><wait>"
+          ],
+          "boot_wait": "10s",
+          "disk_size": 20480,
+          "guest_os_type": "centos",
+          "http_directory": "http",
+          "output_directory": "images/openSUSE-{{user `os`}}-paralles-{{user `arch`}}-{{user `version`}}",
+          "parallels_tools_flavor": "lin",
+          "prlctl": [
+            [
+              "set",
+              "{{.Name}}",
+              "--memsize",
+              "1024"
+            ],
+            [
+              "set",
+              "{{.Name}}",
+              "--cpus",
+              "1"
+            ]
+          ],
+          "prlctl_version_file": ".prlctl_version",
+          "shutdown_command": "echo 'vagrant' | sudo -S /sbin/halt -p",
+          "ssh_username": "vagrant",
+          "ssh_password": "vagrant",
+          "ssh_wait_timeout": "10000s",
+          "vm_name": "opensuse-{{user `os`}}-{{user `arch`}}"
+      },
+
+    {
       "name": "virtualbox",
       "type": "virtualbox-iso",
 
@@ -71,7 +117,7 @@
       "output_directory": "images/openSUSE-{{user `os`}}-libvirt-{{user `arch`}}-{{user `version`}}",
       "ssh_username": "vagrant",
       "ssh_password": "vagrant",
-      "ssh_wait_timeout": "1000s",
+      "ssh_wait_timeout": "10000s",
       "disk_size": 20480,
       "ssh_port": 22,
       "headless": false,
