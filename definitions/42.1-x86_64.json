@@ -14,6 +14,11 @@
     "cpus": "1"
   },
   "builders": [
+    {    "type": "docker",
+        "image": "darksheer/leap",
+        "export_path": "images/image.tar"
+        "output_directory": "images/openSUSE-{{user `os`}}-docker-{{user `arch`}}-{{user `version`}}",
+    },
     {
         "name": "vmware-fusion",
         "type": "vmware-iso",
@@ -57,7 +62,6 @@
           "iso_url": "{{user `iso_url`}}",
           "iso_checksum": "{{user `iso_checksum`}}",
           "iso_checksum_type": "{{user `iso_checksum_type`}}",
-          "headless": false,
           "boot_command": [
             "<esc><enter><wait>",
             "linux ",
