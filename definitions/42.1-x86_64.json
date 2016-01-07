@@ -16,8 +16,7 @@
   "builders": [
     {    "type": "docker",
         "image": "darksheer/leap",
-        "export_path": "images/image.tar",
-        "output_directory": "images/openSUSE-{{user `os`}}-docker-{{user `arch`}}-{{user `version`}}"
+        "export_path": "images/image.tar"
     },
     {
         "name": "vmware-fusion",
